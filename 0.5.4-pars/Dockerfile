@@ -30,7 +30,7 @@ RUN apt-get update -y \
     && make -f makefile.unix USE_UPNP= -e PIE=1 -C src \
     && install -Dm755 "src/ppcoind" "/usr/local/bin/" \
     ## cleanup
-    && cd .. && rm v${PPC_VERSION}.tar.gz && rm -r peercoin-advanced-relay-${PPC_VERSION} \
+    && cd .. && rm -f v${PPC_VERSION}.tar.gz && rm -r peercoin-advanced-relay-${PPC_VERSION} \
     && apt-get remove -y --purge curl ca-certificates build-essential libssl-dev libdb++-dev \
     libboost-program-options-dev libboost-filesystem-dev libboost-system-dev libboost-thread-dev \
     && apt-get -y clean \
