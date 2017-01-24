@@ -1,7 +1,8 @@
 FROM debian:latest
 MAINTAINER peerchemist <peerchemist@protonmail.ch> (@peerboxPPC)
 
-ENV PPC_VERSION=0.5.4pars
+#ENV PPC_VERSION=0.5.4pars
+ENV PPC_VERSION=minstakeage
 ENV PPC_SHA256 0eadf070acdc6d926bc45e98effe6fb2205ab811257eef105f2520eb08527d2b
 ENV GOSU_VERSION=1.9
 
@@ -19,9 +20,10 @@ RUN apt-get update -y \
     && rm /usr/local/bin/gosu.asc \
     && chmod +x /usr/local/bin/gosu \
     ## ppcoind
-    && curl -SLO4 https://github.com/hrobeers/peercoin-advanced-relay/archive/v${PPC_VERSION}.tar.gz \
+#    && curl -SLO4 https://github.com/hrobeers/peercoin-advanced-relay/archive/v${PPC_VERSION}.tar.gz \
+    && curl -SLO4 https://github.com/peercoinops/peercoin-advanced-relay/archive/${PPC_VERSION}.tar.gz \
     && tar xf v${PPC_VERSION}.tar.gz \
-    && echo "$PPC_SHA256 v${PPC_VERSION}.tar.gz" | sha256sum -c - \
+#    && echo "$PPC_SHA256 v${PPC_VERSION}.tar.gz" | sha256sum -c - \
     && cd peercoin-advanced-relay-${PPC_VERSION} \
     ## make ppcoind
     && make -f makefile.unix USE_UPNP= -e PIE=1 -C src \
